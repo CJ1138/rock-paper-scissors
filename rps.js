@@ -29,7 +29,7 @@
   //declare 2 variables called playerResult and resultMessage
   
     let playerResult = "lose"
-    let resultMessage = "Computer picked " + computerSelection + " which beats " + playerSelection + ". You Lost!"
+    let resultMessage = "Computer picked " + computerSelection + " which beats " + playerSelection + ". You lost!"
   
   //say that if gameState equals rockrock etc, playerResult = draw and message = a draw message 
   

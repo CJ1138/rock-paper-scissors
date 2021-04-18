@@ -29,7 +29,7 @@
   //declare 2 variables called playerResult and resultMessage
   
     let playerResult = "lose"
-    let resultMessage = "Computer picked " + computerSelection + ". You Lost!"
+    let resultMessage = "Computer picked " + computerSelection + " which beats " + playerSelection + ". You Lost!"
   
   //say that if gameState equals rockrock etc, playerResult = draw and message = a draw message 
   
@@ -41,7 +41,7 @@
   
     } else if (gameState == "rockscissors" || gameState ==  "paperrock" || gameState ==  "scissorspaper"){
       playerResult = "win";
-      resultMessage = "Computer picked " + computerSelection + ". You won!";
+      resultMessage = "Computer picked " + computerSelection + ". Because " + playerSelection + " beats " + computerSelection + ", you won!";
     }
 //Return message
 

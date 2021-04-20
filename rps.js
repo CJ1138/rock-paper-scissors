@@ -12,26 +12,27 @@ function computerPlay(){
       }
     }
 
+const dialogueDiv = document.getElementById("dialogue");
     
-  function gameRound(e){    
-    let computerSelection = computerPlay();
-    let playerSelection = e.target.id;
-    let gameState = playerSelection.concat(computerSelection); 
-    let playerResult = "lose"
-    let resultMessage = "Computer picked " + computerSelection + " which beats " + playerSelection + ". You lost!"
-    
-    if (gameState == "rockrock" || gameState ==  "paperpaper" || gameState ==  "scissorsscissors") {
-      playerResult = "draw";
-      resultMessage = "Computer picked " + computerSelection + " too. It's a draw!";
-    
-    } else if (gameState == "rockscissors" || gameState ==  "paperrock" || gameState ==  "scissorspaper"){
-      playerResult = "win";
-      resultMessage = "Computer picked " + computerSelection + ". Because " + playerSelection + " beats " + computerSelection + ", you won!";
-    }
-    console.log(resultMessage);
-    return playerResult;
-  }
+function gameRound(e){    
+  let computerSelection = computerPlay();
+  let playerSelection = e.target.id;
+  let gameState = playerSelection.concat(computerSelection); 
+  let playerResult = "lose"
+  let resultMessage = "Computer picked " + computerSelection + " which beats " + playerSelection + ". You lost!"
   
+  if (gameState == "rockrock" || gameState ==  "paperpaper" || gameState ==  "scissorsscissors") {
+    playerResult = "draw";
+    resultMessage = "Computer picked " + computerSelection + " too. It's a draw!";
+  
+  } else if (gameState == "rockscissors" || gameState ==  "paperrock" || gameState ==  "scissorspaper"){
+    playerResult = "win";
+    resultMessage = "Computer picked " + computerSelection + ". Because " + playerSelection + " beats " + computerSelection + ", you won!";
+  }
+  dialogueDiv.textContent = resultMessage;
+  return playerResult;
+}
+
 //Declare a function called game
 
   function game(){
@@ -70,7 +71,6 @@ function computerPlay(){
       }
   }
 
-// buttons is a node list. It looks and acts much like an array.
 const buttons = document.querySelectorAll('button');
-
 buttons.forEach((button) => {button.addEventListener('click', gameRound)});
+

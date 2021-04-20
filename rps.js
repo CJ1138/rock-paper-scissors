@@ -1,53 +1,35 @@
 //Create a function that randomly selects the computer choice of rock paper or scissors:
 
-    function computerPlay(){
-        let result = Math.floor(Math.random() * 3);
-        if (result == 0){
-          return "rock"
-        }
-        else if (result == 1) {
-            return "paper" 
-          } else {
-            return "scissors"
-          }
-        }
-  
-  //Declare a function called gameRound that takes 2 parameters: playerSelection and computerSelection
-  
-  function gameRound(computerSelection){
-  
-    let playerSelection = prompt("Type Rock, Paper or Scissors!");
-  
-  //make playerSelection lower case
-  
-    playerSelection = playerSelection.toLowerCase();
-  
-  //concatenate playerSelection and computerSelection into a new variable called gameState
-  
-    let gameState = playerSelection.concat(computerSelection);
-  
-  //declare 2 variables called playerResult and resultMessage
-  
+function computerPlay(){
+    let result = Math.floor(Math.random() * 3);
+    if (result == 0){
+      return "rock"
+    }
+    else if (result == 1) {
+        return "paper" 
+      } else {
+        return "scissors"
+      }
+    }
+
+    
+  function gameRound(e){    
+    let computerSelection = computerPlay();
+    let playerSelection = e.target.id;
+    let gameState = playerSelection.concat(computerSelection); 
     let playerResult = "lose"
     let resultMessage = "Computer picked " + computerSelection + " which beats " + playerSelection + ". You lost!"
-  
-  //say that if gameState equals rockrock etc, playerResult = draw and message = a draw message 
-  
+    
     if (gameState == "rockrock" || gameState ==  "paperpaper" || gameState ==  "scissorsscissors") {
       playerResult = "draw";
       resultMessage = "Computer picked " + computerSelection + " too. It's a draw!";
-  
-  //say that if gameState equals rockscissors etc, playerResult = win and message = a win message 
-  
+    
     } else if (gameState == "rockscissors" || gameState ==  "paperrock" || gameState ==  "scissorspaper"){
       playerResult = "win";
       resultMessage = "Computer picked " + computerSelection + ". Because " + playerSelection + " beats " + computerSelection + ", you won!";
     }
-//Return message
-
     console.log(resultMessage);
     return playerResult;
-  
   }
   
 //Declare a function called game
@@ -87,5 +69,8 @@
           console.log("It's a draw.")
       }
   }
-//Start the game
-game();
+
+// buttons is a node list. It looks and acts much like an array.
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {button.addEventListener('click', gameRound)});

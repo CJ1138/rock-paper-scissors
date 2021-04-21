@@ -15,6 +15,11 @@ pscoreDiv.textContent = "Your Score: " + playerScore;
 const cscoreDiv = document.getElementById('computerScore');
 cscoreDiv.textContent = "Computer Score: " + computerScore;
 
+function capitalise(text){
+  let outputText = text.charAt(0).toUpperCase() + text.slice(1);
+  return outputText;
+}
+
 //Rndomly selects the computer choice of rock paper or scissors:
 
 function computerPlay(){
@@ -34,17 +39,19 @@ function computerPlay(){
 function gameRound(computerSelection, playerSelection){    
   let gameState = playerSelection.concat(computerSelection); 
   let playerResult = "lose"
-  let resultMessage = "Computer picked " + computerSelection + " which beats " + playerSelection + ". You lost!"
+  let resultMessage = "Computer picked " + computerSelection + ". </br> You picked " + playerSelection + ". </br> " 
+  + capitalise(playerSelection) + " beats " + playerSelection + ". You lost this round!";
   
   if (gameState == "rockrock" || gameState ==  "paperpaper" || gameState ==  "scissorsscissors") {
     playerResult = "draw";
-    resultMessage = "Computer picked " + computerSelection + " too. It's a draw!";
+    resultMessage = "You both picked " + computerSelection + ". </br> It's a draw!";
   
   } else if (gameState == "rockscissors" || gameState ==  "paperrock" || gameState ==  "scissorspaper"){
     playerResult = "win";
-    resultMessage = "Computer picked " + computerSelection + ". Because " + playerSelection + " beats " + computerSelection + ", you won!";
+    resultMessage = "Computer picked " + computerSelection + ". </br> You picked " + playerSelection + ". </br> " 
+    + capitalise(playerSelection) + " beats " + computerSelection + ". You won this round!";
   }
-  dialogueDiv.textContent = resultMessage;
+  dialogueDiv.innerHTML = resultMessage;
   return playerResult;
 }
 

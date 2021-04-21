@@ -7,7 +7,7 @@ let playerScore = 0;
 let computerScore = 0;
 
 const resultDiv = document.getElementById("resultDiv");
-resultDiv.textContent = "First to 5 points wins:"
+resultDiv.textContent = "First to 5 points wins"
 
 const pscoreDiv = document.getElementById('playerScore');
 pscoreDiv.textContent = "Your Score: " + playerScore;
@@ -38,13 +38,13 @@ function roundDialogue(result, playerSelection, computerSelection){
 
   let outcomeText = ". You lost this round."
   let ruling = capitalise(computerSelection) + " beats " + playerSelection;
-  
+
   if (result == "win"){
     ruling = capitalise(playerSelection) + " beats " + computerSelection;
     outcomeText = ". You won this round.";
   } else if (result == "draw"){
-    ruling = capitalise(playerSelection) + " and " + computerSelection + " are of equal power!"
-    outcomeText = "It's a draw."
+    ruling = "Your choices are of equal power!"
+    outcomeText = ""
   }
 
   let resultMessage = "Computer picked " + computerSelection + ". </br> You picked " + playerSelection + ". </br> " 
@@ -69,9 +69,9 @@ function gameRound(computerSelection, playerSelection){
 }
 
 function game(e){
-
+  resultDiv.removeAttribute("class");
   if (playerScore == 5 || computerScore == 5) {
-    resultDiv.textContent = "First to 5 points wins:"
+    resultDiv.textContent = "First to 5 points wins"
     playerScore = 0;
     computerScore = 0;
   }
@@ -87,10 +87,14 @@ function game(e){
   }
 
   let fresultMessage;
-  if (playerScore == 5) {
+  if (playerScore == 5 && computerScore !=5) {
     resultDiv.textContent = "You Won! :) Press a button to play again."
-  } else if (computerScore == 5) {
+    resultDiv.classList.add("won");
+  } else if (computerScore == 5 && playerScore !=5) {
     resultDiv.textContent = "You Lost :( Press a button to play again.";
+    resultDiv.classList.add("lost");
+  }else if (computerScore ==5 && playerScore==5){
+    resultDiv.textContent = "It's a draw! Press a button to play again.";
   }
   pscoreDiv.textContent = "Your Score: " + playerScore;
   cscoreDiv.textContent = "Computer Score: " + computerScore;

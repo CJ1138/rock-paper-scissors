@@ -20,7 +20,7 @@ h1 {
     background-color: burlywood;
     text-align: center;
     justify-content: space-evenly;
-    width: 100%;
+    width: 500px;
 
 }
 .btn{
@@ -40,7 +40,7 @@ h1 {
 }
 #header {
     background-color: coral;
-    width: 100%;
+    width: 500px;
     text-align: center;
 }
 #scoreContainer{
@@ -53,4 +53,25 @@ h1 {
     height: 100px;
     border: 5px solid;
     font-size: 30px;
+    background-color: white;
+}
+#top-area {
+ display: flex;
+ align-content: center;
+ justify-content: center;
+}
+#dialogue {
+    padding: 10px;
+    margin: 10px;
+    background-color: white;
+}
+#resultDiv{
+    font-size: 50px;
+    width: 500px;
+}
+.lost{
+    background-color: red;
+}
+.won{
+    background-color: green;
 }

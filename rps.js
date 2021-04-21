@@ -1,22 +1,28 @@
-//Create a function that randomly selects the computer choice of rock paper or scissors:
+const dialogueDiv = document.getElementById("dialogue");
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {button.addEventListener('click', game)});
+
+let playerScore = 0;
+let computerScore = 0;
+
+//Rndomly selects the computer choice of rock paper or scissors:
 
 function computerPlay(){
-    let result = Math.floor(Math.random() * 3);
-    if (result == 0){
-      return "rock"
+  let result = Math.floor(Math.random() * 3);
+  if (result == 0){
+    return "rock"
+  }
+  else if (result == 1) {
+      return "paper" 
+    } else {
+      return "scissors"
     }
-    else if (result == 1) {
-        return "paper" 
-      } else {
-        return "scissors"
-      }
-    }
+  }
 
-const dialogueDiv = document.getElementById("dialogue");
-    
-function gameRound(e){    
-  let computerSelection = computerPlay();
-  let playerSelection = e.target.id;
+
+//Plays a round of the game   
+function gameRound(computerSelection, playerSelection){    
   let gameState = playerSelection.concat(computerSelection); 
   let playerResult = "lose"
   let resultMessage = "Computer picked " + computerSelection + " which beats " + playerSelection + ". You lost!"
@@ -33,44 +39,31 @@ function gameRound(e){
   return playerResult;
 }
 
-//Declare a function called game
+function reportResult(){
+  console.log("Some cunt won.");
+  playerScore = 0;
+  computerScore = 0;
+}
 
-  function game(){
+function game(e){
 
-//Declare 2 variables called playerScore and computerScore and set both to zero
-
-      let playerScore = 0;
-      let computerScore = 0;
-      let roundResult;
-//Cycle through 5 loops of the below function, incrementing the relevant score each time
-
-      for (i = 0; i <= 4; i++){
-
-//Assign the value returned by gameRound to the varible roundResult
-        roundResult = gameRound(computerPlay());
-
-//If the player won increment the player's score etc
-        if (roundResult == "win"){
-            playerScore++;
-        } else if (roundResult == "lose"){
-            computerScore++;
-        } else {
-            playerScore++;
-            computerScore++;
-        }
-      }
-//Report the scores and the outcome
-      console.log("Your Score: " + playerScore);
-      console.log("Computer's Score: " + computerScore);
-      if (playerScore > computerScore){
-          console.log("You won the game!")
-      } else if (playerScore < computerScore){
-          console.log("You lost the game :(")
-      } else {
-          console.log("It's a draw.")
-      }
+  let playerSelection = e.target.id;
+  roundResult = gameRound(computerPlay(), playerSelection);
+  if (roundResult == "win"){
+    playerScore++;
+  } else if (roundResult == "lose"){
+    computerScore++;
+  } else {
+    playerScore++;
+    computerScore++
   }
 
-const buttons = document.querySelectorAll('button');
-buttons.forEach((button) => {button.addEventListener('click', gameRound)});
+  if (playerScore == 5 || computerScore == 5){
+    console.log("Look, some cunt won:");
+  }
+  console.log("Player Score: " + playerScore);
+  console.log("Computer Score: " + computerScore);
+}
 
+  //When someone clicks a button, play one round of the game
+  //

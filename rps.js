@@ -6,6 +6,15 @@ buttons.forEach((button) => {button.addEventListener('click', game)});
 let playerScore = 0;
 let computerScore = 0;
 
+const resultDiv = document.getElementById("resultDiv");
+resultDiv.textContent = "First to 5 points wins:"
+
+const pscoreDiv = document.getElementById('playerScore');
+pscoreDiv.textContent = "Your Score: " + playerScore;
+
+const cscoreDiv = document.getElementById('computerScore');
+cscoreDiv.textContent = "Computer Score: " + computerScore;
+
 //Rndomly selects the computer choice of rock paper or scissors:
 
 function computerPlay(){
@@ -39,16 +48,15 @@ function gameRound(computerSelection, playerSelection){
   return playerResult;
 }
 
-function reportResult(){
-  console.log("Some cunt won.");
-  playerScore = 0;
-  computerScore = 0;
-}
-
 function game(e){
 
-  let playerSelection = e.target.id;
-  roundResult = gameRound(computerPlay(), playerSelection);
+  if (playerScore == 5 || computerScore == 5) {
+    resultDiv.textContent = "First to 5 points wins:"
+    playerScore = 0;
+    computerScore = 0;
+  }
+
+  roundResult = gameRound(computerPlay(), e.target.id);
   if (roundResult == "win"){
     playerScore++;
   } else if (roundResult == "lose"){
@@ -58,11 +66,14 @@ function game(e){
     computerScore++
   }
 
-  if (playerScore == 5 || computerScore == 5){
-    console.log("Look, some cunt won:");
+  let fresultMessage;
+  if (playerScore == 5) {
+    resultDiv.textContent = "You Won! :) Press a button to play again."
+  } else if (computerScore == 5) {
+    resultDiv.textContent = "You Lost :( Press a button to play again.";
   }
-  console.log("Player Score: " + playerScore);
-  console.log("Computer Score: " + computerScore);
+  pscoreDiv.textContent = "Your Score: " + playerScore;
+  cscoreDiv.textContent = "Computer Score: " + computerScore;
 }
 
   //When someone clicks a button, play one round of the game

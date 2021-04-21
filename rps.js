@@ -34,24 +34,37 @@ function computerPlay(){
     }
   }
 
+function roundDialogue(result, playerSelection, computerSelection){
+
+  let outcomeText = ". You lost this round."
+  let ruling = capitalise(computerSelection) + " beats " + playerSelection;
+  
+  if (result == "win"){
+    ruling = capitalise(playerSelection) + " beats " + computerSelection;
+    outcomeText = ". You won this round.";
+  } else if (result == "draw"){
+    ruling = capitalise(playerSelection) + " and " + computerSelection + " are of equal power!"
+    outcomeText = "It's a draw."
+  }
+
+  let resultMessage = "Computer picked " + computerSelection + ". </br> You picked " + playerSelection + ". </br> " 
+  + ruling + outcomeText;
+
+  return resultMessage;
+}
 
 //Plays a round of the game   
 function gameRound(computerSelection, playerSelection){    
   let gameState = playerSelection.concat(computerSelection); 
   let playerResult = "lose"
-  let resultMessage = "Computer picked " + computerSelection + ". </br> You picked " + playerSelection + ". </br> " 
-  + capitalise(playerSelection) + " beats " + playerSelection + ". You lost this round!";
   
   if (gameState == "rockrock" || gameState ==  "paperpaper" || gameState ==  "scissorsscissors") {
     playerResult = "draw";
-    resultMessage = "You both picked " + computerSelection + ". </br> It's a draw!";
   
   } else if (gameState == "rockscissors" || gameState ==  "paperrock" || gameState ==  "scissorspaper"){
     playerResult = "win";
-    resultMessage = "Computer picked " + computerSelection + ". </br> You picked " + playerSelection + ". </br> " 
-    + capitalise(playerSelection) + " beats " + computerSelection + ". You won this round!";
   }
-  dialogueDiv.innerHTML = resultMessage;
+  dialogueDiv.innerHTML = roundDialogue(playerResult, playerSelection, computerSelection);
   return playerResult;
 }
 

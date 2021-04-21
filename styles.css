@@ -1,5 +1,4 @@
 #game-container{
-    width: 500px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -17,10 +16,27 @@ h1 {
 }
 #buttons{
    
+    display: flex;
     background-color: burlywood;
     text-align: center;
+    justify-content: space-evenly;
     width: 100%;
 
+}
+.btn{
+    border: 5px solid #f8f9fa;
+    color: #3c4043;
+    background-color: cyan;
+    font-family: 'Amatic SC', cursive;
+    font-size: 50px;
+    margin: 11px 4px;
+    padding: 0 16px;
+    line-height: 27px;
+    height: 150px;
+    width: 150px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
 }
 #header {
     background-color: coral;
